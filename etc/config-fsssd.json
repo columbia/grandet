@@ -1,0 +1,41 @@
+{
+    "server" : {
+        "choices" : [
+            {
+                "name" : "fsSSD",
+                "id" : 4,
+                "actor" : "FS",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : 0,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 5,
+                "minObjectSize" : 0,
+                "profile": {
+                    "ssd" : "true"
+                }
+            }
+        ],
+        "actors" : {
+            "Redis" : {
+                "magPort" : 6379,
+                "ssdPort" : 6380
+            },
+            "S3" : {
+                "conns" : 128
+            },
+            "FS" : {
+                "magPath" : "/magnetic",
+                "ssdPath" : "/ssd"
+            }
+        },
+        "port" : 1481,
+        "estimator" : "meta",
+        "conns" : 100,
+        "persist" : 1,
+        "actor" : "Dummy,FS,S3",
+        "stat" : "true",
+        "unixaddress" : "/tmp/grandet_socket"
+    }
+}

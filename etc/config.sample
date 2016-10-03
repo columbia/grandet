@@ -1,0 +1,79 @@
+{
+    "server" : {
+        "choices" : [
+            {
+                "name" : "s3Lossy",
+                "id" : 1,
+                "actor" : "S3",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : 0,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 4,
+                "profile": {
+                    "bucket" : "cloud-econ-rr",
+                    "reducedRedundancy" : "true"
+                }
+            },
+            {
+                "name" : "s3Reliable",
+                "id" : 3,
+                "actor" : "S3",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : 0,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 11,
+                "profile": {
+                    "bucket" : "cloud-econ",
+                    "reducedRedundancy" : "false"
+                }
+            },
+            {
+                "name" : "fsMag",
+                "id" : 2,
+                "actor" : "FS",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : 0,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 5,
+                "profile": {
+                    "ssd" : "false"
+                }
+            },
+            {
+                "name" : "fsSSD",
+                "id" : 4,
+                "actor" : "FS",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : 0,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 5,
+                "profile": {
+                    "ssd" : "true"
+                }
+            }
+
+        ],
+        "actors" : {
+            "Redis" : {
+                "magPort" : 6379,
+                "ssdPort" : 6380
+            },
+            "S3" : {
+                "conns" : 10
+            },
+            "FS" : {
+                "magPath" : "/magnetic",
+                "ssdPath" : "/ssd"
+            }
+        },
+        "port" : 1481
+    }
+}

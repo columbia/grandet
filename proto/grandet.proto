@@ -1,0 +1,74 @@
+package grandet;
+
+message Value {
+    enum Type {
+        UNKNOWN = 0;
+        DATA = 1;
+        FILENAME = 2;
+        URL = 3;
+        SIZE = 4;
+    }
+
+    required Type type = 1;
+    optional bytes data = 2;
+    optional string filename = 3;
+    optional string url = 4;
+    optional int64 size = 5;
+}
+
+message Request {
+    enum Type {
+        UNKNOWN = 0;
+        PUT = 1;
+        GET = 2;
+        DEL = 3;
+        SIZE = 4;
+        KEYS = 5;
+        LOCK = 6;
+        UNLOCK = 7;
+        RESET = 8;
+        DIST = 9;
+        ACCOUNT = 10;
+        EXIT = 11;
+    }
+
+    required Type type = 1;
+    optional string key = 2;
+    optional Value value = 3;
+
+    message Requirements {
+        optional int32 durability_required = 1;
+        optional int32 latency_required = 2;
+        optional int32 bandwidth_required = 3;
+
+        message Metadata {
+            optional bytes meta_key = 1;
+            optional bytes meta_value = 2;
+        }
+
+        repeated Metadata metadata = 4;
+
+        optional bool prefer_url = 5;
+        optional int64 expiration = 6;
+
+        message Range {
+            optional int64 start = 1;
+            optional int64 end = 2;
+        }
+
+        optional Range range = 7;
+    }
+
+    optional Requirements requirements = 4;
+}
+
+message Response {
+    enum Status {
+        UNKNOWN = 0;
+        OK = 1;
+        ERROR = 2;
+    }
+
+    required Status status = 1;
+    optional Value value = 2;
+}

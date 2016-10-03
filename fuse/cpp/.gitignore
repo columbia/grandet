@@ -1,0 +1,4 @@
+grandet_fuse
+data/
+mnt/
+*.o

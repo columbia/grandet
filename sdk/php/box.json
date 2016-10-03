@@ -1,0 +1,11 @@
+{
+    "directories": [
+        "grandet"
+    ],
+    "files": [
+        "autoload.php",
+        "index.php",
+        "grandet.proto.php"
+    ],
+    "output": "grandet.phar"
+}

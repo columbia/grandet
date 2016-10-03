@@ -1,0 +1,12 @@
+S3 Actor: actor/{s3actor.cpp s3actor.h}
+EBS Actor: actor/{fsactor.cpp fsactor.h}
+Decider: decider/{*.cpp *.h}
+Predictor: estimator/{*.cpp *.h}
+Controller: server/{*.cpp *.h}
+Profiler: profiler/*.cpp
+C++ SDK: sdk/cpp/{*.cpp *.h}
+PHP SDK: sdk/php/{*.json *.php}
+Python SDK: sdk/python/*.py
+FS interface: fuse/cpp/{*.cpp *.h}
+Console: console/*.cpp
+Misc: actor/actor.h actor/dummyactor.{cpp h} actor/redisactor.{cpp h} bench/{*.cpp *.py} common/{*.cpp *.h} include/*.h proto/*.proto  CMakeLists.txt */CMakeLists.txt sdk/*/CMakeLists.txt

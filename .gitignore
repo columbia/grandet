@@ -1,28 +1,11 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+build
+run
+*.swp
+*~
+examples/piwigo/_data/
+examples/piwigo/local/config/database.inc.php
+examples/piwigo/upload/
+examples/simplesaml
+nohup.out
+*.pyc
+.clang_complete

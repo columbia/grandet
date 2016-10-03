@@ -1,0 +1,107 @@
+{
+    "server" : {
+        "choices" : [
+            {
+                "name" : "s3Lossy",
+                "id" : 3,
+                "actor" : "S3",
+                "latency" : 10,
+                "bandwidth" : 10,
+                "costPerByte" : -1,
+                "costPerGet" : 1000000,
+                "costPerPut" : 1000000,
+                "durability" : 4,
+                "minObjectSize" : 0,
+                "profile": {
+                    "bucket" : "cloud-econ-1-rr",
+                    "reducedRedundancy" : "true",
+                    "infrequentAccess": "false"
+                }
+            },
+            {
+                "name" : "s3Reliable",
+                "id" : 1,
+                "actor" : "S3",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : -1,
+                "costPerGet" : 1000000,
+                "costPerPut" : 1000000,
+                "durability" : 11,
+                "minObjectSize" : 0,
+                "profile": {
+                    "bucket" : "cloud-econ-1",
+                    "reducedRedundancy" : "false",
+                    "infrequentAccess": "false"
+                }
+            },
+            {
+                "name" : "s3Infrequent",
+                "id" : 5,
+                "actor" : "S3",
+                "latency" : 10,
+                "bandwidth" : 1024000,
+                "costPerByte" : -1,
+                "costPerGet" : 1000000,
+                "costPerPut" : 1000000,
+                "durability" : 11,
+                "minObjectSize" : 131072,
+                "profile": {
+                    "bucket" : "cloud-econ-1-ia",
+                    "reducedRedundancy" : "false",
+                    "infrequentAccess": "true"
+                }
+            },
+            {
+                "name" : "fsMag",
+                "id" : 2,
+                "actor" : "FS",
+                "latency" : 0,
+                "bandwidth" : 1024000,
+                "costPerByte" : -1,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 5,
+                "minObjectSize" : 0,
+                "profile": {
+                    "ssd" : "false"
+                }
+            },
+            {
+                "name" : "fsSSD",
+                "id" : 4,
+                "actor" : "FS",
+                "latency" : 0,
+                "bandwidth" : 1024000,
+                "costPerByte" : -1,
+                "costPerGet" : 0,
+                "costPerPut" : 0,
+                "durability" : 5,
+                "minObjectSize" : 0,
+                "profile": {
+                    "ssd" : "true"
+                }
+            }
+        ],
+        "actors" : {
+            "Redis" : {
+                "magPort" : 6379,
+                "ssdPort" : 6380
+            },
+            "S3" : {
+                "conns" : 128
+            },
+            "FS" : {
+                "magPath" : "/magnetic",
+                "ssdPath" : "/ssd"
+            }
+        },
+        "port" : 1481,
+        "estimator" : "meta",
+        "conns" : 100,
+        "persist" : 1,
+        "actor" : "FS,S3",
+        "stat" : "true",
+        "unixaddress" : "/tmp/grandet_socket"
+    }
+}
